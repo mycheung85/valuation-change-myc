@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React from 'react';
+import { ReactPropTypes } from 'react';
 import { AccountLabel, AccountSection, AccountListItem, InfoText } from '../../modules/property-details/style'
 import { account, purchaseYearString, purchaseMonthString } from '../helper-functions';
 import { ValuationGrid, ValuationRow, ValuationCol, ValuationColValue, ValuationValue } from './ValuationDetails-style';
@@ -53,4 +54,12 @@ export const ValuationDetails = ({sincePurchaseValuationSum, sincePurchasePercen
       </ValuationGrid>
     </AccountSection>
   );
+}
+
+
+ValuationDetails.ReactPropTypes = {
+  sincePurchaseValuationSum: ReactPropTypes.number,
+  sincePurchasePercentage: ReactPropTypes.number,
+  annualAppreciationSum: ReactPropTypes.number,
+  purchaseGrowthValue: ReactPropTypes.bool,
 }

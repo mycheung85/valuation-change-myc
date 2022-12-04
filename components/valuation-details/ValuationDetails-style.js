@@ -26,7 +26,7 @@ export const ValuationColValue = styled(ValuationCol)`
 
 export const ValuationValue = styled.span`
   width: fit-content;
-  background-color: ${({purchaseGrowthValueBg}) => purchaseGrowthValueBg ? '#c2f7e1' : 'red'};
+  background-color: ${({purchaseGrowthValueBg}) => purchaseGrowthValueBg ? '#c2f7e1' : '#006b57'};
   padding: 0.05rem 1.45rem;
   border-radius: 0.70rem;
   display: flex;

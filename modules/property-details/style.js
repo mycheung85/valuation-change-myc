@@ -18,7 +18,7 @@ export const AccountHeadline = styled.h2`
   font-weight: normal;
   color: ${(props) => props.theme.colors.neutral[900]};
   margin-bottom: ${(props) => props.theme.space.m};
-  background-color: ${({purchaseGrowthValueBg}) => purchaseGrowthValueBg  ? '#c2f7e1' : 'red'};
+  background-color: ${({purchaseGrowthValueBg}) => purchaseGrowthValueBg  ? '#c2f7e1' : '#006b57'};
 `;
 
 export const InfoText = styled.div`
