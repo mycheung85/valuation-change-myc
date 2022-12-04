@@ -65,7 +65,7 @@ const Detail = ({}) => {
         </RowContainer>
       </AccountSection>
 
-      <ValuationDetails sincePurchaseValuationSum={sincePurchaseValuationSum} sincePurchasePercentage={sincePurchasePercentage} annualAppreciationSum={annualAppreciationSum} purchaseGrowth={purchaseGrowth} purchaseGrowthValue={purchaseGrowthValue}/>
+      <ValuationDetails sincePurchaseValuationSum={sincePurchaseValuationSum} sincePurchasePercentage={sincePurchasePercentage} annualAppreciationSum={annualAppreciationSum} purchaseGrowthValue={purchaseGrowthValue}/>
 
 
       {mortgage && (
