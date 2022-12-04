@@ -33,7 +33,13 @@ Consider opportunities to reduce repetition in the code and increase legibility
 We also ask that you update the readme with answers to the following questions
 
 1. Given more time, what other changes you would have liked to make?
+
+- I would have liked to have extended the Grid styles so it would sit in the global styles rather than just the Valuation styles
+- Also the styles for the negative / positive valuation change could sit in a global theme so it can keep the code DRY, as apposed to the way I have repeated the same line of code in the styles and valuation styles
+
+
 2. What UX or design improvements or alterations might you suggest? These can be to existing components or completely new ideas.
+- The project could be extended further by seperating the index file into different components, each 'Action Section' could be a global card and data from each section passed as props.
 
 ---
 
