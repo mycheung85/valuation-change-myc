@@ -6,7 +6,7 @@ import { ValuationGrid, ValuationRow, ValuationCol, ValuationColValue, Valuation
 
 
 
-export const ValuationDetails = ({sincePurchaseValuationSum, sincePurchasePercentage, annualAppreciationSum, purchaseGrowthValue}) => {
+export const ValuationDetails = ({purchaseValuation, purchaseValuationPercentage, annualAppreciationPercentage, purchaseGrowthValue}) => {
   return (
     <AccountSection>
       <ValuationGrid>
@@ -31,13 +31,15 @@ export const ValuationDetails = ({sincePurchaseValuationSum, sincePurchasePercen
         Since Purchase
         </ValuationCol>
         <ValuationColValue alignRight="alignRight">
+    
         <ValuationValue purchaseGrowthValueBg={purchaseGrowthValue}>
           {new Intl.NumberFormat("en-GB", {
               style: "currency",
               currency: "GBP",
-            }).format(Math.abs(sincePurchaseValuationSum()))} {" "}
-            ({sincePurchasePercentage()} %)
+            }).format(Math.abs(purchaseValuation))} {" "}
+            ({purchaseValuationPercentage} %)
         </ValuationValue>
+
         </ValuationColValue>
 
        </ValuationRow>        
@@ -47,7 +49,7 @@ export const ValuationDetails = ({sincePurchaseValuationSum, sincePurchasePercen
         </ValuationCol>
         <ValuationColValue alignRight="alignRight">
             <ValuationValue purchaseGrowthValueBg={purchaseGrowthValue}>
-              {annualAppreciationSum()} %
+              {annualAppreciationPercentage} %
             </ValuationValue>
         </ValuationColValue>
        </ValuationRow>
@@ -58,8 +60,8 @@ export const ValuationDetails = ({sincePurchaseValuationSum, sincePurchasePercen
 
 
 ValuationDetails.PropTypes = {
-  sincePurchaseValuationSum: PropTypes.number,
-  sincePurchasePercentage: PropTypes.number,
-  annualAppreciationSum: PropTypes.number,
+  purchaseValuation: PropTypes.number,
+  purchaseValuationPercentage: PropTypes.number,
+  annualAppreciationPercentage: PropTypes.number,
   purchaseGrowthValue: PropTypes.bool,
 }

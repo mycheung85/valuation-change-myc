@@ -1,4 +1,3 @@
-
 export const account = {
   uid: "65156cdc-5cfd-4b34-b626-49c83569f35e",
   deleted: false,
@@ -44,7 +43,7 @@ export const sincePurchaseValuationSum = () => {
   return recentValuation - originalPurchase;
 }
 
-export const sincePurchasePercentage = () => {
+export const sincePurchasePercentageSum = () => {
   let originalPurchase = account.originalPurchasePrice;
   return (sincePurchaseValuationSum() / originalPurchase) * 100;
 }
@@ -54,5 +53,5 @@ export const sincePurchasePercentage = () => {
 export const annualAppreciationSum = () => {
   let lastUpdatedString = account.lastUpdate.split('-')[0];
   let yearsSincePurchase = lastUpdatedString - purchaseYearString();
-  return sincePurchasePercentage() / yearsSincePurchase
+  return sincePurchasePercentageSum() / yearsSincePurchase
 }

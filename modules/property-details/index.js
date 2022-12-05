@@ -1,6 +1,7 @@
 /* eslint-disable max-statements */
 import { add, format } from "date-fns";
 import React, { useEffect, useState } from "react";
+import PropTypes from 'react';
 import { Button } from "../../components/button";
 import RowContainer from "../../components/row-container";
 import { ValuationDetails } from "../../components/valuation-details/ValuationDetails";
@@ -8,7 +9,7 @@ import {
   AccountHeadline, AccountLabel, AccountList, AccountListItem, AccountSection, InfoText, Inset
 } from "./style";
 
-import { account, sincePurchaseValuationSum, sincePurchasePercentage, annualAppreciationSum } from "../../components/helper-functions";
+import { account, sincePurchaseValuationSum, sincePurchasePercentageSum, annualAppreciationSum } from "../../components/helper-functions";
 
 const Detail = ({}) => {
   let mortgage;
@@ -17,21 +18,40 @@ const Detail = ({}) => {
     mortgage = account.associatedMortgages[0];
   }
 
-  const [purchaseGrowthValue, setPurchaseGrowthValue] = useState(Boolean);
+  const [purchaseGrowthValue, setPurchaseGrowthValue] = useState(false);
+  const [purchaseValuation, setPurchaseValuation] = useState(0);
+  const [purchaseValuationPercentage, setPurchaseValuationPercentage] = useState(0);
+  const [annualAppreciationPercentage, setAnnualAppreciationPercentage] = useState(0);
 
   const purchaseGrowth = () => {
-    console.log(sincePurchasePercentage())
-    if(sincePurchasePercentage() > 0) {
+    if(sincePurchasePercentageSum() > 0) {
       return setPurchaseGrowthValue(true);
     } else {
       return setPurchaseGrowthValue(false);
     }
   }
 
-  useEffect(() => {
-    purchaseGrowth()
-  }, [])
+  const purchaseValuationClick = () => {
+    const purchaseValuation = sincePurchaseValuationSum();
+    setPurchaseValuation(purchaseValuation)
+  }
 
+  const purchaseValuationPercentageClick = () => {
+    const purchaseValuationPercentage = sincePurchasePercentageSum();
+    setPurchaseValuationPercentage(purchaseValuationPercentage)
+  }
+
+  const annualAppreciationClick = () => {
+    const annualAppreciation = annualAppreciationSum();
+    setAnnualAppreciationPercentage(annualAppreciation)
+  }
+
+  const handleClickValuation = () => {
+    purchaseValuationClick();
+    purchaseValuationPercentageClick();
+    annualAppreciationClick();
+    purchaseGrowth();
+  }
   return (
     <Inset>
       <AccountSection>
@@ -65,7 +85,11 @@ const Detail = ({}) => {
         </RowContainer>
       </AccountSection>
 
-      <ValuationDetails sincePurchaseValuationSum={sincePurchaseValuationSum} sincePurchasePercentage={sincePurchasePercentage} annualAppreciationSum={annualAppreciationSum} purchaseGrowthValue={purchaseGrowthValue}/>
+      <ValuationDetails 
+        purchaseValuationPercentage={purchaseValuationPercentage} annualAppreciationPercentage={annualAppreciationPercentage} 
+        purchaseGrowthValue={purchaseGrowthValue} 
+        purchaseValuation={purchaseValuation}
+      />
 
 
       {mortgage && (
@@ -91,7 +115,7 @@ const Detail = ({}) => {
       )}
       <Button
         // This is a dummy action
-        onClick={() => alert("You have navigated to the edit account page")}
+        onClick={() =>  handleClickValuation()}
       >
         Edit account
       </Button>
@@ -100,3 +124,13 @@ const Detail = ({}) => {
 };
 
 export default Detail;
+
+Detail.PropTypes = {
+  purchaseValuation: PropTypes.number,
+  sincePurchaseValuationSum: PropTypes.func,
+  purchaseValuationPercentage: PropTypes.number,
+  sincePurchasePercentageSum: PropTypes.func,
+  annualAppreciation: PropTypes.number,
+  annualAppreciationSum: PropTypes.func,
+  purchaseGrowthValue: PropTypes.bool,
+}
